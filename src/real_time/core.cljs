@@ -21,7 +21,7 @@
       "paste-link")
     om/IRender
     (render [_]
-      (dom/form nil
+      (dom/form #js {:className "input-form"}
                 (dom/input #js {:type "url" :name "link"})
                 (dom/input #js {:type "submit" :value "Submit"})))))
 
