@@ -12,6 +12,19 @@
 
 (def app-state (atom {:test "hello, world"}))
 
+(defn paste-link
+  "Om component for new paste-link"
+  [data owner]
+  (reify
+    om/IDisplayName
+    (display-name [this]
+      "paste-link")
+    om/IRender
+    (render [_]
+      (dom/form nil
+                (dom/input #js {:type "url" :name "link"})
+                (dom/input #js {:type "submit" :value "Submit"})))))
+
 (defn app [data owner]
   (reify
     om/IWillMount
@@ -23,7 +36,7 @@
       "app")
     om/IRender
     (render [this]
-      (dom/div #js {:className "content"} (:test data)))))
+      (om/build paste-link data))))
 
 (om/root app app-state
          {:target (by-id "container")})
