@@ -10,7 +10,7 @@
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
 
 
-(def app-state (atom {:test "hello, worlds"}))
+(def app-state (atom {}))
 
 (defn paste-link
   "Om component for new paste-link"

@@ -1,0 +1,39 @@
+* Holy grail demo
+
+** What is it?
+
+This demonstrates the “holy grail” workflow for web development the way I envision it: a restartable back-end in the REPL + a hot-reloadable front-end in the browser. 
+
+** Demo 
+
+Clone this repo, cd into it; and type on the command line:
+
+#+BEGIN_SRC shell
+$ boot dev
+#+END_SRC
+
+Connect to the headless repl (cider in Emas works great). Type:
+#+BEGIN_SRC clojure
+(go)
+#+END_SRC
+
+In the browser, go to http://localhost:3000
+
+You will see a simple web app that doesn’t do much, but that’s not the point. The point is the workflow, in other words, how you can take it from here to develop both APIs and client-side functionality in the most comfortable way. Let’s demonstrate this. 
+
+Open the file *src/clj/real_time/handler.clj*, and let’s add a route: 
+#+BEGIN_SRC clojure
+  (GET "/foo" [] (str "<h1>Hello, world</h1>"))
+#+END_SRC
+
+Now save the file, go to your REPL, and type: 
+
+#+BEGIN_SRC clojure
+(reset)
+#+END_SRC
+
+In the browser, type http://localhost:3000/foo. You’ve just worked on the backend, made a change, and restarted it from the REPL.
+
+Now let’s do a change client-side. Open *src/clj/real_time/handler.clj* and on line 26 change the string for Value from “submit” to “send”. Save the file. The change is reflected automatically in the browser.
+
+
