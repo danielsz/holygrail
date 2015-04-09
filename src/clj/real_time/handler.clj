@@ -2,15 +2,16 @@
   (:require [clojure.java.io :as io]
             [compojure.core :refer :all]
             [compojure.route :as route]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+            [ring.util.response :as resp]))
 
 (defroutes app-routes
-  (route/resources "css" {:root "css"})
-  (GET "/" [] "Hello World")
-  (GET "/bar" [] (io/resource "index.html"))
-  (GET "/foo" [] (str "<h1>Hello user Daniel</h1>"))
+  (GET "/" [] (-> (resp/resource-response "index.html")
+                     (resp/content-type "text/html")))
   (route/not-found "Not Found"))
+
+(def middleware (assoc-in site-defaults [:static :resources] "/"))
 
 (def app
   (-> app-routes
-      (wrap-defaults site-defaults)))
+      (wrap-defaults middleware)))

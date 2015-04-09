@@ -8,7 +8,7 @@
                  [environ "1.0.0"]
                  [danielsz/boot-environ "0.0.1"]
                  ; server
-                 [org.danielsz/system "0.1.5-SNAPSHOT"]
+                 [org.danielsz/system "0.1.6"]
                  [ring/ring-defaults "0.1.4"]
                  [http-kit "2.1.16"]
                  [compojure "1.3.3"]
@@ -37,3 +37,16 @@
 
 (task-options!
  autoprefixer {:files ["main.css"]})
+
+(deftask dev
+  "Run a restartable system in the Repl"
+  []
+  (comp
+   (environ :env {:http-port 3000})
+   (watch :verbose true)
+   (system :sys #'dev-system)
+   (reload)
+   (autoprefixer)
+   (from-cljsjs)
+   (cljs)
+   (repl :server true)))
