@@ -1,12 +1,14 @@
 (set-env!
- :source-paths   #{"src/cljs" }
- :resource-paths #{"resources" "src/clj"}
+ :source-paths   #{"src/cljs" "src/clj"}
+ :resource-paths #{"resources"}
  :dependencies '[[adzerk/boot-cljs      "0.0-2814-4" :scope "test"]
                  [adzerk/boot-reload    "0.2.6"      :scope "test"]
                  [pandeiro/boot-http    "0.6.2"      :scope "test"]
                  [cljsjs/boot-cljsjs     "0.4.7"      :scope "test"]
+                 [environ "1.0.0"]
+                 [danielsz/boot-environ "0.0.1"]
                  ; server
-                 [org.danielsz/system "0.1.4"]
+                 [org.danielsz/system "0.1.5-SNAPSHOT"]
                  [ring/ring-defaults "0.1.4"]
                  [http-kit "2.1.16"]
                  [compojure "1.3.3"]
@@ -28,8 +30,10 @@
  '[cljsjs.boot-cljsjs    :refer [from-cljsjs]]
  '[pandeiro.boot-http    :refer [serve]]
  '[danielsz.autoprefixer :refer [autoprefixer]]
- '[reloaded.repl :refer [system init start stop go reset]]
- '[real-time.systems :refer [dev-system]])
+ '[reloaded.repl :refer [init start stop go reset]]
+ '[real-time.systems :refer [dev-system]]
+ '[danielsz.boot-environ :refer [environ]]
+ '[system.boot :refer [system]])
 
 (task-options!
  autoprefixer {:files ["main.css"]})
