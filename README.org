@@ -15,7 +15,13 @@ $ cd holygrail
 $ boot dev
 #+END_SRC
 
-Launch your favorite editor, and connect to the headless REPL (*M-x cider-connect* in Emacs works great). Type:
+This starts the build pipeline. Pay attention to the line that says:
+#+BEGIN_SRC shell
+nREPL server started on port 49722 on host 127.0.0.1 - nrepl://127.0.0.1:49722
+#+END_SRC
+
+Launch your favorite editor, and connect to the headless REPL (*M-x cider-connect* in Emacs works great). The N
+Type:
 #+BEGIN_SRC clojure
 (go)
 #+END_SRC
