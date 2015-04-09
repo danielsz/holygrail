@@ -20,7 +20,7 @@ Launch your favorite editor, and connect to the headless REPL (*M-x cider-connec
 (go)
 #+END_SRC
 
-In the browser, go to http://localhost:3000
+In the browser, go to [[http://localhost:3000]]
 
 You will see a simple web app that doesn’t do much, but the point is the workflow. In other words, the possibilities to develop both APIs and client-side functionality in the most comfortable way. Let’s demonstrate this. 
 
@@ -40,7 +40,7 @@ Now save the file, go to your REPL, and type:
 (reset)
 #+END_SRC
 
-In the browser, type http://localhost:3000/foo. You’ve just worked on the backend, made a change, and restarted it from the REPL. How cool is that?
+In the browser, type [[http://localhost:3000/foo]]. You’ve just worked on the backend, made a change, and restarted it from the REPL. How cool is that?
 
 Now let’s do a change client-side. Open *src/clj/real_time/handler.clj* and on line 26 change the string for Value from “submit” to “send”. Save the file. The change is reflected automatically in the browser. How cool is that?
 
