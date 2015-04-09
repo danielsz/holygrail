@@ -2,26 +2,29 @@
 
 ** What is it?
 
-This demonstrates the “holy grail” workflow for web development the way I envision it: a restartable back-end in the REPL + a hot-reloadable front-end in the browser. 
+This demonstrates the “holy grail” workflow for web development the way I envision it: a restartable back-end in the REPL + a hot-reloadable front-end in the browser.
 
 ** Demo 
 
-Clone this repo, cd into it; and type on the command line:
+Make sure [[https://github.com/boot-clj/boot][boot-clj]] is installed. This is the awesome build tool that makes this worflow possible.
 
+Clone this repo, cd into it and start the development pipeline build.
 #+BEGIN_SRC shell
+$ git clone git@github.com:danielsz/holygrail.git
+$ cd holygrail
 $ boot dev
 #+END_SRC
 
-Connect to the headless REPL (*M-x cider-connect* in Emacs works great). Type:
+Launch your favorite editor, and connect to the headless REPL (*M-x cider-connect* in Emacs works great). Type:
 #+BEGIN_SRC clojure
 (go)
 #+END_SRC
 
 In the browser, go to http://localhost:3000
 
-You will see a simple web app that doesn’t do much, but the point is the workflow. In other words, how you can take it from here to develop both APIs and client-side functionality in the most comfortable way. Let’s demonstrate this. 
+You will see a simple web app that doesn’t do much, but the point is the workflow. In other words, the possibilities to develop both APIs and client-side functionality in the most comfortable way. Let’s demonstrate this. 
 
-Open the file *src/clj/real_time/handler.clj*, and let’s add a route: 
+Open the file *src/clj/real_time/handler.clj*. Let’s add a route: 
 #+BEGIN_SRC clojure
 (defroutes app-routes
   (GET "/" [] (-> (resp/resource-response "index.html")
@@ -41,4 +44,4 @@ In the browser, type http://localhost:3000/foo. You’ve just worked on the back
 
 Now let’s do a change client-side. Open *src/clj/real_time/handler.clj* and on line 26 change the string for Value from “submit” to “send”. Save the file. The change is reflected automatically in the browser. How cool is that?
 
-You’re all set to dive into the zone for endless hours of sheer creative genius! 
+Do you feel the creative juices flow? Aren’t you all set to dive in the zone for endless hours of sheer creative output?!
