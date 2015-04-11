@@ -35,9 +35,6 @@
  '[danielsz.boot-environ :refer [environ]]
  '[system.boot :refer [system]])
 
-(task-options!
- autoprefixer {:files ["main.css"]})
-
 (deftask dev
   "Run a restartable system in the Repl"
   []
@@ -46,7 +43,6 @@
    (watch :verbose true)
    (system :sys #'dev-system)
    (reload)
-   (autoprefixer)
    (from-cljsjs)
    (cljs)
    (repl :server true)))
