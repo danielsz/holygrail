@@ -8,7 +8,7 @@
                  [environ "1.0.0"]
                  [danielsz/boot-environ "0.0.1"]
                  ; server
-                 [org.danielsz/system "0.1.6"]
+                 [org.danielsz/system "0.1.8-SNAPSHOT"]
                  [ring/ring-defaults "0.1.4"]
                  [http-kit "2.1.16"]
                  [compojure "1.3.3"]
@@ -19,7 +19,7 @@
                  [org.clojure/core.match "0.3.0-alpha4"]
                  [secretary "1.2.3" :exclusions [org.clojure/clojurescript]]
                  [cljsjs/leaflet "0.7.3-0"]
-                 [danielsz/boot-autoprefixer "0.0.1"]
+                 [danielsz/boot-autoprefixer "0.0.3"]
                  [org.om/om "0.8.1" :exclusions [com.facebook/react]]
                  [cljsjs/hammer "2.0.4-4"]
                  [cljsjs/react-with-addons "0.13.1-0"]])
@@ -41,7 +41,7 @@
   (comp
    (environ :env {:http-port 3000})
    (watch :verbose true)
-   (system :sys #'dev-system)
+   (system :sys #'dev-system :hot-reload true :files ["handler.clj"])
    (reload)
    (from-cljsjs)
    (cljs)

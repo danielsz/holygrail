@@ -7,7 +7,7 @@
 
 (defroutes app-routes
   (GET "/" [] (-> (resp/resource-response "index.html")
-                     (resp/content-type "text/html")))
+                  (resp/content-type "text/html")))
   (route/not-found "Not Found"))
 
 (def middleware (assoc-in site-defaults [:static :resources] "/"))

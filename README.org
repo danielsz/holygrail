@@ -2,7 +2,7 @@
 
 ** What is it?
 
-This demonstrates the “holy grail” workflow for web development the way I envision it: a restartable back-end in the REPL + a hot-reloadable front-end in the browser.
+This demonstrates the /holy grail/ workflow for web development the way I envision it: a restartable back-end in the REPL + a hot-reloadable front-end in the browser.
 
 ** Demo 
 
@@ -28,7 +28,7 @@ Type:
 
 In the browser, go to [[http://localhost:3000]]
 
-You will see a simple web app that doesn’t do much, but the point is the workflow. In other words, the possibilities to develop both APIs and client-side functionality in the most comfortable way. Let’s demonstrate this. 
+You will see a simple web app that doesn’t do much, but the point is the workflow. In other words, the possibilities to develop both APIs and client-side functionality in a most comfortable way. Let’s demonstrate this. 
 
 Open the file *src/clj/real_time/handler.clj*. Let’s add a route: 
 #+BEGIN_SRC clojure
@@ -40,14 +40,19 @@ Open the file *src/clj/real_time/handler.clj*. Let’s add a route:
 
 #+END_SRC
 
-Now save the file, go to your REPL, and type:
+Now save the file. The build pipeline detects the change, and restarts the backend system automatically.
+That’s what we asked for when configuring our ~dev~ task in ~build.boot~.
+
+#+BEGIN_SRC clojure
+(system :sys #'dev-system :hot-reload true :files ["handler.clj"])
+#+END_SRC
+
+If we had set hot-reload to false, we would have had to go to the REPL and type:
 
 #+BEGIN_SRC clojure
 (reset)
 #+END_SRC
 
-In the browser, type [[http://localhost:3000/foo]]. You’ve just worked on the backend, made a change, and restarted it from the REPL. How cool is that?
-
-Now let’s do a change client-side. Open *src/cljs/real_time/core.cljs* and on line 26 change the string for Value from “submit” to “send”. Save the file. The change is reflected automatically in the browser. How cool is that?
+In the browser, type [[http://localhost:3000/foo]]. Voilà. A new route is born. This demonstrates the workflow in the backend. Now let’s do a change client-side. Open *src/cljs/real_time/core.cljs* and on line 26 change the string for Value from “submit” to “send”. Save the file. The change is reflected automatically in the browser. How cool is that?
 
 Do you feel the creative juices flow? Aren’t you all set to dive in the zone for endless hours of sheer creative output?!
