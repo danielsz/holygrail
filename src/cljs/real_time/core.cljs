@@ -2,17 +2,12 @@
   (:require [om.core :as om :include-macros true]
             [om.dom :as dom :include-macros true]
             [cljs.core.async :as async :refer [<! timeout chan put!]]
-            [cljs-utils.core :refer [by-id]]
-            [cljs.core.match :refer-macros [match]]
-            [secretary.core :as secretary :refer-macros [defroute]]
-            [cljsjs.leaflet :as L]
-            [cljsjs.hammer :as hammer])
+            [cljs-utils.core :refer [by-id]])
   (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
-
 
 (def app-state (atom {}))
 
-(defn paste-link
+(defn form
   "Om component for new paste-link"
   [data owner]
   (reify
@@ -36,7 +31,7 @@
       "app")
     om/IRender
     (render [this]
-      (om/build paste-link data))))
+      (om/build form data))))
 
 (om/root app app-state
          {:target (by-id "container")})
