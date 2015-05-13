@@ -2,7 +2,7 @@
 
 ** What is it?
 
-This demonstrates the /holy grail/ workflow for web development the way I envision it: a restartable back-end in the REPL + a hot-reloadable front-end in the browser.
+This demonstrates the /holy grail/ workflow for web development the way I envision it: an auto-restartable back-end in the REPL + a hot-reloadable front-end in the browser.
 
 ** Demo 
 
