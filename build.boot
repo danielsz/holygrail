@@ -10,6 +10,7 @@
                  [ring/ring-defaults "0.1.5"]
                  [http-kit "2.1.19"]
                  [compojure "1.3.4"]
+                 [org.clojure/tools.nrepl "0.2.10"]
                  ; client
                  [org.omcljs/om "0.8.8" :exclusions [cljsjs/react]]
                  [cljsjs/react "0.13.1-0"]])
@@ -20,7 +21,7 @@
  '[reloaded.repl :refer [init start stop go reset]]
  '[holy-grail.systems :refer [dev-system]]
  '[danielsz.boot-environ :refer [environ]]
- '[system.boot :refer [system]])
+ '[system.boot :refer [system run]])
 
 (deftask dev
   "Run a restartable system in the Repl"
@@ -33,3 +34,11 @@
    (cljs)
    (repl :server true)))
 
+(deftask dev-run
+  "Run a dev system from the command line"
+  []
+  (comp
+   (environ :env {:http-port 3000})
+   (cljs)
+   (run :main-namespace "holy-grail.core" :arguments [#'dev-system])
+   (wait)))
