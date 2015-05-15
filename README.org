@@ -20,8 +20,8 @@ This starts the build pipeline. Pay attention to the line that says:
 nREPL server started on port 49722 on host 127.0.0.1 - nrepl://127.0.0.1:49722
 #+END_SRC
 
-Launch your favorite editor, and connect to the headless REPL (*M-x cider-connect* in Emacs works great). The N
-Type:
+Launch your favorite editor, and connect to the headless REPL (*M-x cider-connect* in Emacs works great). Then
+type:
 #+BEGIN_SRC clojure
 (go)
 #+END_SRC
@@ -37,22 +37,21 @@ Open the file *src/clj/real_time/handler.clj*. Let’s add a route:
                      (resp/content-type "text/html")))
   (GET "/foo" [] (str "<h1>Hello, world</h1>")) ;; let’s add this
   (route/not-found "Not Found"))
-
 #+END_SRC
 
 Now save the file. The build pipeline detects the change, and restarts the backend system automatically.
-That’s what we asked for when configuring our ~dev~ task in ~build.boot~.
+This is because we configured our ~dev~ task in ~build.boot~ like so:
 
 #+BEGIN_SRC clojure
 (system :sys #'dev-system :hot-reload true :files ["handler.clj"])
 #+END_SRC
 
-If we had set hot-reload to false, we would have had to go to the REPL and type:
+If we had set hot-reload to false, we would have had to go to the REPL and type manually:
 
 #+BEGIN_SRC clojure
 (reset)
 #+END_SRC
 
-In the browser, type [[http://localhost:3000/foo]]. Voilà. A new route is born. This demonstrates the workflow in the backend. Now let’s do a change client-side. Open *src/cljs/real_time/core.cljs* and on line 26 change the string for Value from “submit” to “send”. Save the file. The change is reflected automatically in the browser. How cool is that?
+In the browser, type [[http://localhost:3000/foo]]. Voilà. A new route is born. This demonstrates the workflow in the backend. Now let’s do a change client-side. Open *src/cljs/real_time/core.cljs* and on line 26 change the string for Value from “submit” to “send”. Save the file. The change is reflected automatically in the browser.
 
 Do you feel the creative juices flow? Aren’t you all set to dive in the zone for endless hours of sheer creative output?!
