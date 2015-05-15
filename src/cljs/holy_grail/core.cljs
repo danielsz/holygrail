@@ -1,9 +1,6 @@
-(ns real-time.core
+(ns holy-grail.core
   (:require [om.core :as om :include-macros true]
-            [om.dom :as dom :include-macros true]
-            [cljs.core.async :as async :refer [<! timeout chan put!]]
-            [cljs-utils.core :refer [by-id]])
-  (:require-macros [cljs.core.async.macros :refer [go go-loop]]))
+            [om.dom :as dom :include-macros true]))
 
 (def app-state (atom {}))
 
@@ -22,10 +19,6 @@
 
 (defn app [data owner]
   (reify
-    om/IWillMount
-    (will-mount [_])
-    om/IDidMount
-    (did-mount [_])
     om/IDisplayName
     (display-name [this]
       "app")
@@ -34,4 +27,4 @@
       (om/build form data))))
 
 (om/root app app-state
-         {:target (by-id "container")})
+         {:target (.getElementById js/document "container")})

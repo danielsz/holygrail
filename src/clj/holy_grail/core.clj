@@ -1,6 +1,6 @@
-(ns real-time.core
+(ns holy-grail.core
   (:gen-class)
-  (:require [real-time.systems :refer [prod-system]]
+  (:require [holy-grail.systems :refer [prod-system]]
             [reloaded.repl :refer [system init start stop go reset]]))
 
   (defn -main [& args]

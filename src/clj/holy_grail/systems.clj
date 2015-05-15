@@ -1,6 +1,6 @@
-(ns real-time.systems
+(ns holy-grail.systems
   (:require 
-   [real-time.handler :refer [app]]
+   [holy-grail.handler :refer [app]]
    [environ.core :refer [env]]
    [system.core :refer [defsystem]]
    (system.components 
