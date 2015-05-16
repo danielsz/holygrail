@@ -4,7 +4,7 @@
  :dependencies '[[adzerk/boot-cljs      "0.0-2814-4" :scope "test"]
                  [adzerk/boot-reload    "0.2.6"      :scope "test"]
                  [environ"1.0.0"]
-                 [danielsz/boot-environ "0.0.2"]
+                 [danielsz/boot-environ "0.0.3"]
                  ; server
                  [org.danielsz/system "0.1.8-SNAPSHOT"]
                  [ring/ring-defaults "0.1.5"]
