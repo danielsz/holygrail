@@ -1,16 +1,21 @@
 (ns holy-grail.handler
-  (:require [clojure.java.io :as io]
-            [compojure.core :refer :all]
-            [compojure.route :as route]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [ring.util.response :as resp]))
+  (:require
+   [holy-grail.api :refer [quiz]]
+   [clojure.java.io :as io]
+   [compojure.core :refer :all]
+   [compojure.route :as route]
+   [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+   [ring.util.response :as resp]))
 
 (defroutes app-routes
   (GET "/" [] (-> (resp/resource-response "index.html")
                   (resp/content-type "text/html")))
+  (POST "/quiz" req quiz)
   (route/not-found "Not Found"))
 
-(def middleware (assoc-in site-defaults [:static :resources] "/"))
+(def middleware (-> site-defaults
+                 (assoc-in [:static :resources] "/")
+                 (assoc-in [:security :anti-forgery] false)))
 
 (def app
   (-> app-routes

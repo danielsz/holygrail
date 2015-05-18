@@ -13,8 +13,9 @@
       "paste-link")
     om/IRender
     (render [_]
-      (dom/form #js {:className "input-form"}
-                (dom/input #js {:type "url" :name "link"})
+      (dom/form #js {:className "input-form" :method "POST" :action "/quiz"}
+                (dom/label #js {:htmlFor "answer"} "What was the capital of Assyria?")
+                (dom/input #js {:type "text" :name "answer" :id "answer"})
                 (dom/input #js {:type "submit" :value "Submit"})))))
 
 (defn app [data owner]

@@ -35,7 +35,7 @@ Open the file *src/clj/real_time/handler.clj*. Let’s add a route:
 (defroutes app-routes
   (GET "/" [] (-> (resp/resource-response "index.html")
                      (resp/content-type "text/html")))
-  (GET "/foo" [] (str "<h1>Hello, world</h1>")) ;; let’s add this
+(POST "/quiz" req (str "<h1>Nice try</h1>"))  ;; let’s add this
   (route/not-found "Not Found"))
 #+END_SRC
 
