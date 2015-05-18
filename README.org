@@ -1,13 +1,12 @@
-* Holy grail demo
+* Holy grail
 
 ** What is it?
 
 This demonstrates the /holy grail/ workflow for web development the way I envision it: an auto-restartable back-end in the REPL + a hot-reloadable front-end in the browser.
 
-** Demo 
+This workflow is built on top of [[http://boot-clj.com/][Boot]], a build tool, and [[https://github.com/danielsz/system/tree/master/examples/boot][system]], a component library.  
 
-Make sure [[https://github.com/boot-clj/boot][boot-clj]] is installed. This is the awesome build tool that makes this worflow possible.
-
+** Installation
 Clone this repo, cd into it and start the development pipeline build.
 #+BEGIN_SRC shell
 $ git clone git@github.com:danielsz/holygrail.git
@@ -15,20 +14,65 @@ $ cd holygrail
 $ boot dev
 #+END_SRC
 
-This starts the build pipeline. Pay attention to the line that says:
+** Principle of operation
+
+*** Manual
+You want to operate with a REPL, start the system, and reset it when you make changes.
+
+Compose a build pipeline: 
+
+#+BEGIN_SRC clojure
+(deftask dev
+  "Run a restartable system in the Repl"
+  []
+  (comp
+   (environ :env {:http-port 3000})
+   (watch)
+   (system :sys #'dev-system)
+   (reload)
+   (cljs)
+   (repl :server true)))
+#+END_SRC
+
+Start it: 
+
+#+BEGIN_SRC shell
+$ boot dev
+#+END_SRC
+
+ Pay attention to the line that says:
 #+BEGIN_SRC shell
 nREPL server started on port 49722 on host 127.0.0.1 - nrepl://127.0.0.1:49722
 #+END_SRC
 
-Launch your favorite editor, and connect to the headless REPL (*M-x cider-connect* in Emacs works great). Then
+Launch your favorite editor, and connect to the headless REPL (~M-x cider-connect~ in Emacs works great). Then
 type:
 #+BEGIN_SRC clojure
 (go)
 #+END_SRC
 
-In the browser, go to [[http://localhost:3000]]
+Your web app is started and listening at [[http://localhost:3000]]. When you make changes that require a system restart, type in the REPL: 
 
-You will see a simple web app that doesn’t do much, but the point is the workflow. In other words, the possibilities to develop both APIs and client-side functionality in a most comfortable way. Let’s demonstrate this. 
+#+BEGIN_SRC clojure
+(reset)
+#+END_SRC
+
+*** Automatically
+
+The ~boot-system~ task allow you to automate all of the above. 
+
+#+BEGIN_SRC clojure
+(system :sys #'dev-system :auto-start true :hot-reload true :files ["handler.clj"])
+#+END_SRC
+
+The ~auto-start~ option takes care of starting the app the first time. Your system will automatically be reset after editing ~handler.clj~. Changes elsewhere do not require a system restart, and are available via namespace reloading everytime you save your work. 
+
+*Note:* The ~build.boot~ in this repo already contains those options. 
+
+
+** Demo
+
+Let’s demonstrate how liberating the experience can be when developing a web app with ~boot-system~. 
 
 Open the file *src/clj/real_time/handler.clj*. Let’s add a route: 
 #+BEGIN_SRC clojure
@@ -40,17 +84,6 @@ Open the file *src/clj/real_time/handler.clj*. Let’s add a route:
 #+END_SRC
 
 Now save the file. The build pipeline detects the change, and restarts the backend system automatically.
-This is because we configured our ~dev~ task in ~build.boot~ like so:
-
-#+BEGIN_SRC clojure
-(system :sys #'dev-system :hot-reload true :files ["handler.clj"])
-#+END_SRC
-
-If we had set hot-reload to false, we would have had to go to the REPL and type manually:
-
-#+BEGIN_SRC clojure
-(reset)
-#+END_SRC
 
 In the browser, type [[http://localhost:3000/foo]]. Voilà. A new route is born. This demonstrates the workflow in the backend. Now let’s do a change client-side. Open *src/cljs/real_time/core.cljs* and on line 26 change the string for Value from “submit” to “send”. Save the file. The change is reflected automatically in the browser.
 
