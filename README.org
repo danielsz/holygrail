@@ -59,7 +59,7 @@ Your web app is started and listening at [[http://localhost:3000]]. When you mak
 
 *** Automatically
 
-The ~boot-system~ task allow you to automate all of the above. 
+The ~boot-system~ task allows you to automate all of the above. 
 
 #+BEGIN_SRC clojure
 (system :sys #'dev-system :auto-start true :hot-reload true :files ["handler.clj"])
@@ -72,7 +72,7 @@ The ~auto-start~ option takes care of starting the app the first time. Your syst
 
 ** Demo
 
-Let’s demonstrate how liberating the experience can be when developing a web app with ~boot-system~. 
+Let’s demonstrate how liberating the experience can be when developing a web app in this way. 
 
 Open the file *src/clj/real_time/handler.clj*. Let’s add a route: 
 #+BEGIN_SRC clojure
