@@ -2,7 +2,7 @@
 
 ** What is it?
 
-This demonstrates the /holy grail/ workflow for web development the way I envision it: an auto-restartable back-end in the REPL + a hot-reloadable front-end in the browser.
+This demonstrates the *holy grail* workflow for web development the way I envision it: an auto-restartable back-end in the REPL + a hot-reloadable front-end in the browser.
 
 This workflow is built on top of [[http://boot-clj.com/][Boot]], a build tool, and [[https://github.com/danielsz/system/tree/master/examples/boot][system]], a component library.  
 
@@ -85,6 +85,6 @@ Open the file *src/clj/real_time/handler.clj*. Let’s add a route:
 
 Now save the file. The build pipeline detects the change, and restarts the backend system automatically.
 
-In the browser, type [[http://localhost:3000/foo]]. Voilà. A new route is born. This demonstrates the workflow in the backend. Now let’s do a change client-side. Open *src/cljs/real_time/core.cljs* and on line 26 change the string for Value from “submit” to “send”. Save the file. The change is reflected automatically in the browser.
+In the browser, type [[http://localhost:3000/foo]]. Voilà. A new route is born. This demonstrates the workflow in the backend. Now let’s do a change client-side. Open ~src/cljs/real_time/core.cljs~ and on line 26 change the string for Value from “submit” to “send”. Save the file. The change is reflected automatically in the browser.
 
 Do you feel the creative juices flow? Aren’t you all set to dive in the zone for endless hours of sheer creative output?!
