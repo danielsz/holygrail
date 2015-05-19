@@ -13,8 +13,8 @@
       "paste-link")
     om/IRender
     (render [_]
-      (dom/form #js {:className "input-form" :method "POST" :action "/quiz"}
-                (dom/label #js {:htmlFor "answer"} "What was the capital of Assyria?")
+      (dom/form #js {:className "input-form" :method "POST" :action "/action"}
+                (dom/label #js {:htmlFor "answer"} "Question:")
                 (dom/input #js {:type "text" :name "answer" :id "answer"})
                 (dom/input #js {:type "submit" :value "Submit"})))))
 

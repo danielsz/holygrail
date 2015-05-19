@@ -1,5 +1,4 @@
-(ns holy-grail.api)
+(ns holy-grail.api
+  (:require [prone.debug :refer [debug]]))
 
-(defn quiz [{:keys [params] :as request}] (if (= "Nineveh" (:answer params))
-                                            (str "<p>You may cross the bridge.</p>")
-                                            (str "<p>You have been cast into the gorge of eternal peril.</p>")))
+
