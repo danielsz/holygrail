@@ -74,7 +74,9 @@ The ~auto-start~ option takes care of starting the app the first time. Your syst
 *Note:* The ~build.boot~ in this repo already contains those options. 
 
 ** Demo
+
+A demo video that tries to demonstrate how liberating the experience can be.
  
 #+HTML: <a href="http://www.youtube.com/watch?feature=player_embedded&v=9loJGzCMne8" target="_blank"><img src="http://img.youtube.com/vi/9loJGzCMne8/0.jpg" alt="Holy Grail demo" width="240" height="180" border="10" /></a>
 
-
+Do you feel the creative juices flow? Are you ready for endless hours of sheer creative output?
