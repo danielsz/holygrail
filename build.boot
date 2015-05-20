@@ -11,7 +11,6 @@
                  [http-kit "2.1.19"]
                  [compojure "1.3.4"]
                  [org.clojure/tools.nrepl "0.2.10"]
-                 [prone "0.8.2"]
                  ; client
                  [org.omcljs/om "0.8.8" :exclusions [cljsjs/react]]
                  [cljsjs/react "0.13.1-0"]])

@@ -5,8 +5,7 @@
    [compojure.core :refer :all]
    [compojure.route :as route]
    [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-   [ring.util.response :as resp]
-   [prone.middleware :as prone]))
+   [ring.util.response :as resp]))
 
 (defroutes app-routes
   (GET "/" [] (-> (resp/resource-response "index.html")
@@ -19,6 +18,5 @@
 
 (def app
   (-> app-routes
-      (wrap-defaults middleware)
-      prone/wrap-exceptions))
+      (wrap-defaults middleware)))
 

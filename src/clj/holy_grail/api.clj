@@ -1,4 +1,3 @@
-(ns holy-grail.api
-  (:require [prone.debug :refer [debug]]))
+(ns holy-grail.api)
 
 
