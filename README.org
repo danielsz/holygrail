@@ -70,10 +70,11 @@ The ~auto-start~ option takes care of starting the app the first time. Your syst
 
 ** Demo
 
->  Well, on second thought, let's not go to Camelot -- it is
-a silly place.
-> - King Arthur
-
+#+BEGIN_QUOTE 
+ Well, on second thought, let's not go to Camelot -- it is
+a silly place. — King Arthur
+#+END_QUOTE
+ 
 #+BEGIN_HTML
 <iframe width="420" height="315" src="https://www.youtube.com/embed/9loJGzCMne8" frameborder="0" allowfullscreen></iframe>
 #+END_HTML
