@@ -1,5 +1,10 @@
 * Holy grail
 
+#+BEGIN_QUOTE 
+ Well, on second thought, let's not go to Camelot -- it is
+a silly place. — King Arthur
+#+END_QUOTE
+
 ** What is it?
 
 This demonstrates the *holy grail* workflow for web development the way I envision it: an auto-restartable back-end in the REPL + a hot-reloadable front-end in the browser.
@@ -69,29 +74,7 @@ The ~auto-start~ option takes care of starting the app the first time. Your syst
 *Note:* The ~build.boot~ in this repo already contains those options. 
 
 ** Demo
-
-#+BEGIN_QUOTE 
- Well, on second thought, let's not go to Camelot -- it is
-a silly place. — King Arthur
-#+END_QUOTE
  
-
 #+HTML: <a href="http://www.youtube.com/watch?feature=player_embedded&v=9loJGzCMne8" target="_blank"><img src="http://img.youtube.com/vi/9loJGzCMne8/0.jpg" alt="Holy Grail demo" width="240" height="180" border="10" /></a>
 
 
-Let’s demonstrate how liberating the experience can be when developing a web app in this way. 
-
-Open the file *src/clj/real_time/handler.clj*. Let’s add a route: 
-#+BEGIN_SRC clojure
-(defroutes app-routes
-  (GET "/" [] (-> (resp/resource-response "index.html")
-                     (resp/content-type "text/html")))
-(POST "/quiz" req (str "<h1>Nice try</h1>"))  ;; let’s add this
-  (route/not-found "Not Found"))
-#+END_SRC
-
-Now save the file. The build pipeline detects the change, and restarts the backend system automatically.
-
-In the browser, type [[http://localhost:3000/foo]]. Voilà. A new route is born. This demonstrates the workflow in the backend. Now let’s do a change client-side. Open ~src/cljs/real_time/core.cljs~ and on line 26 change the string for Value from “submit” to “send”. Save the file. The change is reflected automatically in the browser.
-
-Do you feel the creative juices flow? Aren’t you all set to dive in the zone for endless hours of sheer creative output?!
