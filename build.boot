@@ -6,7 +6,7 @@
                  [environ"1.0.0"]
                  [danielsz/boot-environ "0.0.3"]
                  ; server
-                 [org.danielsz/system "0.1.8-SNAPSHOT"]
+                 [org.danielsz/system "0.1.8"]
                  [ring/ring-defaults "0.1.5"]
                  [http-kit "2.1.19"]
                  [compojure "1.3.4"]
@@ -19,7 +19,7 @@
  '[adzerk.boot-cljs      :refer [cljs]]
  '[adzerk.boot-reload    :refer [reload]]
  '[reloaded.repl :refer [init start stop go reset]]
- '[holy-grail.systems :refer [dev-system]]
+ '[holy-grail.systems :refer [dev-system prod-system]]
  '[danielsz.boot-environ :refer [environ]]
  '[system.boot :refer [system run]])
 
@@ -31,7 +31,7 @@
    (watch :verbose true)
    (system :sys #'dev-system :auto-start true :hot-reload true :files ["handler.clj"])
    (reload)
-   (cljs)
+   (cljs :source-map true)
    (repl :server true)))
 
 (deftask dev-run
@@ -41,4 +41,14 @@
    (environ :env {:http-port 3000})
    (cljs)
    (run :main-namespace "holy-grail.core" :arguments [#'dev-system])
+   (wait)))
+
+(deftask prod-run
+  "Run a dev system from the command line"
+  []
+  (comp
+   (environ :env {:http-port 8008
+                  :repl-port 8009})
+   (cljs :optimizations :advanced)
+   (run :main-namespace "holy-grail.core" :arguments [#'prod-system])
    (wait)))
