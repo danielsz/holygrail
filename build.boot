@@ -44,7 +44,7 @@
    (wait)))
 
 (deftask prod-run
-  "Run a dev system from the command line"
+  "Run a prod system from the command line"
   []
   (comp
    (environ :env {:http-port 8008
