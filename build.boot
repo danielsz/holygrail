@@ -1,7 +1,8 @@
 (set-env!
  :source-paths   #{"src/cljs" "src/clj"}
  :resource-paths #{"resources"}
- :dependencies '[[adzerk/boot-cljs      "0.0-2814-4" :scope "test"]
+ :dependencies '[[org.clojure/clojure "1.6.0"     :scope "provided"]
+                 [adzerk/boot-cljs      "0.0-2814-4" :scope "test"]
                  [adzerk/boot-reload    "0.2.6"      :scope "test"]
                  [environ"1.0.0"]
                  [danielsz/boot-environ "0.0.3"]
@@ -52,3 +53,13 @@
    (cljs :optimizations :advanced)
    (run :main-namespace "holy-grail.core" :arguments [#'prod-system])
    (wait)))
+
+(deftask package
+  []
+  "Run a prod system as an uberjar. Launch via `HTTP_PORT=8008 REPL_PORT=8009 java -jar target/holy-grail-1.0.0.jar`"
+  (comp
+    (cljs :optimizations :advanced)
+    (aot :namespace '#{holy-grail.core})
+    (pom :project 'holy-grail :version "1.0.0")
+    (uber)
+    (jar :main 'holy-grail.core)))
