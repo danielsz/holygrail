@@ -10,7 +10,7 @@
   (reify
     om/IDisplayName
     (display-name [this]
-      "paste-link")
+      "form")
     om/IRender
     (render [_]
       (dom/form #js {:className "input-form" :method "POST" :action "/action"}
