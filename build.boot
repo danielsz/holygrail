@@ -1,27 +1,28 @@
 (set-env!
  :source-paths   #{"src/cljs" "src/clj"}
  :resource-paths #{"resources"}
- :dependencies '[[org.clojure/clojure "1.7.0"     :scope "provided"]
-                 [org.clojure/clojurescript "1.7.189"]
-                 [adzerk/boot-cljs "1.7.170-3" :scope "test"]
-                 [adzerk/boot-reload    "0.4.2"      :scope "test"]
+ :dependencies '[[adzerk/boot-cljs "1.7.228-1" :scope "test"]
+                 [adzerk/boot-reload "0.4.5" :scope "test"]
 
-                 [adzerk/boot-cljs-repl   "0.3.0"] ;; latest release
+                 [adzerk/boot-cljs-repl   "0.3.0" :scope "test"]
                  [com.cemerick/piggieback "0.2.1"  :scope "test"]
                  [weasel                  "0.7.0"  :scope "test"]
 
-                 [environ"1.0.1"]
-                 [boot-environ "1.0.1"]
-                 [org.danielsz/system "0.2.1-SNAPSHOT"]
+                 [org.clojure/clojure "1.8.0"]
+                 [org.clojure/clojurescript "1.7.228"]
+
+                 [environ "1.0.2"]
+                 [boot-environ "1.0.2"]
+
+                 [org.danielsz/system "0.3.0-SNAPSHOT"]
                  [org.clojure/tools.nrepl "0.2.12"]
 
-                 ; server
+                 [ring/ring-core "1.4.0"]
+                 [ring/ring-jetty-adapter "1.4.0"]
                  [ring/ring-defaults "0.1.5"]
-                 [http-kit "2.1.19"]
                  [compojure "1.4.0"]
                  ; client
-                 [org.omcljs/om "1.0.0-alpha28" :exclusions [[cljsjs/react]]]
-                 [cljsjs/react "0.14.3-0"]])
+                 [org.omcljs/om "0.9.0"]])
 
 (require
  '[adzerk.boot-cljs      :refer [cljs]]
@@ -38,7 +39,7 @@
   (comp
    (environ :env {:http-port "3000"})
    (watch :verbose true)
-   (system :sys #'dev-system :auto-start true :hot-reload true :files ["handler.clj"])
+   (system :sys #'dev-system :auto true :files ["handler.clj"])
    (reload)
    (cljs :source-map true)
    (repl :server true)))
@@ -49,7 +50,7 @@
   (comp
    (environ :env {:http-port "3000"})
    (watch :verbose true)
-   (system :sys #'dev-system :auto-start true :hot-reload true :files ["handler.clj"])
+   (system :sys #'dev-system :auto true :files ["handler.clj"])
    (reload)
    (cljs-repl)
    (cljs :source-map true)))

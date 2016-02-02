@@ -4,7 +4,7 @@
    [environ.core :refer [env]]
    [system.core :refer [defsystem]]
    (system.components 
-    [http-kit :refer [new-web-server]]
+    [jetty :refer [new-web-server]]
     [repl-server :refer [new-repl-server]])))
    
 (defsystem dev-system

@@ -66,10 +66,10 @@ Your web app is started and listening at [[http://localhost:3000]]. When you mak
 The ~boot-system~ task allows you to automate all of the above. 
 
 #+BEGIN_SRC clojure
-(system :sys #'dev-system :auto-start true :hot-reload true :files ["handler.clj"])
+(system :sys #'dev-system :auto true :files ["handler.clj"])
 #+END_SRC
 
-The ~auto-start~ option takes care of starting the app the first time. Your system will automatically be reset after editing ~handler.clj~. Changes elsewhere do not require a system restart, and are available via namespace reloading everytime you save your work. 
+The ~auto~ option takes care of your application lifecycle. Your system will automatically be reset after editing ~handler.clj~. Changes elsewhere that do not require a system restart will be reloaded on the fly everytime you save your work. 
 
 *Note:* The ~build.boot~ in this repo already contains those options. 
 
