@@ -11,8 +11,8 @@
                  [org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.7.228"]
 
-                 [environ "1.0.2"]
-                 [boot-environ "1.0.2"]
+                 [environ "1.0.3"]
+                 [boot-environ "1.0.3"]
 
                  [org.danielsz/system "0.3.0-SNAPSHOT"]
                  [org.clojure/tools.nrepl "0.2.12"]
@@ -28,7 +28,6 @@
  '[adzerk.boot-cljs      :refer [cljs]]
  '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
  '[adzerk.boot-reload    :refer [reload]]
- '[reloaded.repl :refer [init start stop go reset]]
  '[holy-grail.systems :refer [dev-system prod-system]]
  '[environ.boot :refer [environ]]
  '[system.boot :refer [system run]])

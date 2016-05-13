@@ -1,7 +1,7 @@
 (ns holy-grail.core
   (:gen-class)
   (:require [holy-grail.systems :refer [prod-system]]
-            [reloaded.repl :refer [set-init! go]]))
+            [system.repl :refer [set-init! go]]))
 
 (defn -main
   "Start a production system, unless a system is passed as argument (as in the dev-run task)."
