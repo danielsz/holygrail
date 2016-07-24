@@ -2,7 +2,7 @@
  :source-paths   #{"src/cljs" "src/clj"}
  :resource-paths #{"resources"}
  :dependencies '[[adzerk/boot-cljs "1.7.228-1" :scope "test"]
-                 [adzerk/boot-reload "0.4.5" :scope "test"]
+                 [adzerk/boot-reload "0.4.12" :scope "test"]
 
                  [adzerk/boot-cljs-repl   "0.3.0" :scope "test"]
                  [com.cemerick/piggieback "0.2.1"  :scope "test"]
