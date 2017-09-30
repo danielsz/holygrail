@@ -1,32 +1,25 @@
 (set-env!
  :source-paths   #{"src/cljs" "src/clj"}
  :resource-paths #{"resources"}
- :dependencies '[[adzerk/boot-cljs "1.7.228-1" :scope "test"]
-                 [adzerk/boot-reload "0.4.12" :scope "test"]
-
-                 [adzerk/boot-cljs-repl   "0.3.0" :scope "test"]
-                 [com.cemerick/piggieback "0.2.1"  :scope "test"]
-                 [weasel                  "0.7.0"  :scope "test"]
-
+ :dependencies '[[adzerk/boot-cljs "2.1.4" :scope "test"]
+                 [adzerk/boot-reload "0.5.2" :scope "test"]
                  [org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.7.228"]
-
-                 [environ "1.0.3"]
-                 [boot-environ "1.0.3"]
-
-                 [org.danielsz/system "0.3.0-SNAPSHOT"]
+                 [org.clojure/clojurescript "1.9.908"]
+                 
+                 [environ "1.1.0"]
+                 [boot-environ "1.1.0"]
+      
+                 [org.danielsz/system "0.4.1-SNAPSHOT"]
                  [org.clojure/tools.nrepl "0.2.12"]
+                 
+                 [ring "1.6.2"]
+                 [ring/ring-defaults "0.3.1"]
+                 [compojure "1.6.0"]
 
-                 [ring/ring-core "1.4.0"]
-                 [ring/ring-jetty-adapter "1.4.0"]
-                 [ring/ring-defaults "0.1.5"]
-                 [compojure "1.4.0"]
-                 ; client
-                 [org.omcljs/om "0.9.0"]])
+                 [org.omcljs/om "1.0.0-beta1"]])
 
 (require
  '[adzerk.boot-cljs      :refer [cljs]]
- '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
  '[adzerk.boot-reload    :refer [reload]]
  '[holy-grail.systems :refer [dev-system prod-system]]
  '[environ.boot :refer [environ]]
@@ -40,19 +33,8 @@
    (watch :verbose true)
    (system :sys #'dev-system :auto true :files ["handler.clj"])
    (reload)
-   (cljs :source-map true)
+   (cljs)
    (repl :server true)))
-
-(deftask dev-cljs-repl
-  "Run a restartable system in the Repl"
-  []
-  (comp
-   (environ :env {:http-port "3000"})
-   (watch :verbose true)
-   (system :sys #'dev-system :auto true :files ["handler.clj"])
-   (reload)
-   (cljs-repl)
-   (cljs :source-map true)))
 
 (deftask dev-run
   "Run a dev system from the command line"
