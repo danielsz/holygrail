@@ -41,12 +41,12 @@ Start it:
 $ boot dev
 #+END_SRC
 
-The REPL advertises its coordinates.
+The headless REPL advertises its coordinates.
 #+BEGIN_SRC shell
 nREPL server started on port 49722 on host 127.0.0.1 - nrepl://127.0.0.1:49722
 #+END_SRC
 
-Launch your favorite editor, and connect to the headless REPL (~M-x cider-connect~ in Emacs works great). 
+You can connect to it if you plan to do development in the REPL (~M-x cider-connect~ in Emacs works great).
 
 Your web app is started and listening at [[http://localhost:3000]].
 
